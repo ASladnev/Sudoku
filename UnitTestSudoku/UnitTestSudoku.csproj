@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -57,11 +58,16 @@
     <Compile Include="UnitTestCell.cs" />
     <Compile Include="UnitTestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestSudokuWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SudokuModel\SudokuModel.csproj">
       <Project>{109F95C0-0941-4AF9-93B5-A288507240BB}</Project>
       <Name>SudokuModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SudokuWpf\SudokuWpf.csproj">
+      <Project>{335066c1-3374-494a-bd8d-0b6368371e0c}</Project>
+      <Name>SudokuWpf</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
