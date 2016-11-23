@@ -63,6 +63,19 @@ namespace SudokuModel
       });
     }
 
-    
+    public int X   
+    {
+      get {
+        return (Id + 1) - (Id / Matrix.Size) * Matrix.Size;
+      }
+    }
+
+    public int Y
+    {
+      get {
+        return Id / (Matrix.Size) + 1; 
+      }
+    }
+
   }
 }

@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SudokuWpf
 {
@@ -19,15 +8,18 @@ namespace SudokuWpf
   /// </summary>
   public partial class InputNumber : Window
   {
+    public ButtonCell ButtonCell { get; set; }
+
     public InputNumber ()
     {
       InitializeComponent ();
       Loaded += (o, p) => {
-        Application curApp = Application.Current;
-        Window mainWindow = curApp.MainWindow;
+        var curApp = Application.Current;
+        var mainWindow = curApp.MainWindow;
         Left = mainWindow.Left + (mainWindow.Width - ActualWidth) / 2;
         Top = mainWindow.Top + (mainWindow.Height - ActualHeight) / 2;
         txtAnswer.Focus ();
+        lblQuestion.Content = string.Format ($"Описание ячейки № {ButtonCell.Cell.Id}  X= {ButtonCell.Cell.X}  Y= {ButtonCell.Cell.Y}");
       };
     }
 

@@ -33,17 +33,12 @@ namespace SudokuWpf
           var button = new ButtonCell ();
           button.SetValue (Grid.ColumnProperty, y);
           button.SetValue (Grid.RowProperty, x);
-          //button.Padding = new Thickness (5);
           button.Margin = new Thickness (2);
-          //button.VerticalAlignment = VerticalAlignment.Center;
-          //button.Content = "7";
           button.Cell = Matrix.Cells[kc++];
           grid.Children.Add (button);
           ButtonList.Add (button);
-
           button.Click += ClickButton;
         }
-
 
       Action<Button, string, int> setButton = (b, s, c) => {
         b.SetValue (Grid.RowProperty, Matrix.Size + 1);
@@ -52,7 +47,6 @@ namespace SudokuWpf
         b.Content = s;
         b.Width = 100;
         grid.Children.Add (b);
-
       };
 
       var buttonOpen = new Button ();
@@ -63,8 +57,6 @@ namespace SudokuWpf
 
       var buttonCalc = new Button ();
       setButton (buttonCalc, "Расчитать файлы", 6);
-
-
     }
 
     private void ClickButton (object sender, RoutedEventArgs e)
@@ -73,6 +65,7 @@ namespace SudokuWpf
       string result = Convert.ToString (button.Cell.Value ?? -1);
       if (result == "-1") result = "";
       var inputNumber = new InputNumber ();
+      inputNumber.ButtonCell = button;
       //inputNumber.SetParent = this;
       if (inputNumber.ShowDialog () != true) return;
       var number = Convert.ToInt32 (inputNumber.Answer);

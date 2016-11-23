@@ -47,7 +47,23 @@ namespace UnitTestSudoku
       cell.SetValue (5);
     }
 
+    [TestMethod]
+    public void TestMethodCellX ()
+    {
+      var cell = new Cell (7);
+      Assert.AreEqual (8, cell.X);
+      cell = new Cell (35);
+      Assert.AreEqual (9, cell.X);
+    }
 
+    [TestMethod]
+    public void TestMethodCellY ()
+    {
+      var cell = new Cell (7);
+      Assert.AreEqual (1, cell.Y);
+      cell = new Cell (35);
+      Assert.AreEqual (4, cell.Y);
+    }
 
   }
 }
