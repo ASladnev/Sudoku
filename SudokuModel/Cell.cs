@@ -66,14 +66,16 @@ namespace SudokuModel
     public int X   
     {
       get {
-        return (Id + 1) - (Id / Matrix.Size) * Matrix.Size;
+        return (Id % Matrix.Size == 0) ? Matrix.Size : Id % Matrix.Size;
       }
     }
 
     public int Y
     {
       get {
-        return Id / (Matrix.Size) + 1; 
+        var y = Id / (Matrix.Size) + 1;
+        if (y == Matrix.Size + 1) y = Matrix.Size;
+        return y;
       }
     }
 

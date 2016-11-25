@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using SudokuModel;
+using System.IO;
 
 namespace SudokuWpf
 {
@@ -51,12 +52,44 @@ namespace SudokuWpf
 
       var buttonOpen = new Button ();
       setButton (buttonOpen, "Открыть файлы", 0);
+      buttonOpen.Click += ButtonOpen_Click;
 
       var buttonSave = new Button ();
       setButton (buttonSave, "Сохранить файлы", 3);
+      buttonSave.Click += ButtonSave_Click;
 
       var buttonCalc = new Button ();
       setButton (buttonCalc, "Расчитать файлы", 6);
+      buttonCalc.Click += ButtonCalc_Click;
+    }
+
+    private void ButtonCalc_Click (object sender, RoutedEventArgs e)
+    {
+      throw new NotImplementedException ();
+    }
+
+    private void ButtonOpen_Click (object sender, RoutedEventArgs e)
+    {
+      var dlg = new Microsoft.Win32.OpenFileDialog ();
+      dlg.DefaultExt = ".sdk";
+      dlg.Filter = "Sudoku documents (.sdk)|*.sdk";
+      dlg.InitialDirectory = @"D:\";
+      bool? result = dlg.ShowDialog ();
+      if (result != true) return;
+      var filename = dlg.FileName;
+      using (var sr = new StreamReader (filename)) {
+        while (!sr.EndOfStream) {
+          var rl = sr.ReadLine ();
+        }
+        
+      }
+    }
+
+    private void ButtonSave_Click (object sender, RoutedEventArgs e)
+    {
+      using (var sw = new StreamWriter (@"D:\1.sdk")) {
+        Matrix.Cells.ForEach (c => sw.WriteLine ($"{c.Id} {c.Value}"));
+      }
     }
 
     private void ClickButton (object sender, RoutedEventArgs e)
@@ -66,7 +99,6 @@ namespace SudokuWpf
       if (result == "-1") result = "";
       var inputNumber = new InputNumber ();
       inputNumber.ButtonCell = button;
-      //inputNumber.SetParent = this;
       if (inputNumber.ShowDialog () != true) return;
       var number = Convert.ToInt32 (inputNumber.Answer);
       if (number < 1 || number > 9) return;

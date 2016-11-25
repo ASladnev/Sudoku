@@ -33,7 +33,5 @@ namespace SudokuWpf
       DialogResult = true;
     }
 
-    
-
   }
 }
